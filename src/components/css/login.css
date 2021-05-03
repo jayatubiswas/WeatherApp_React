@@ -1,5 +1,4 @@
 .login {
-    background-color: rgb(224, 218, 218);
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -71,3 +70,12 @@
     font-weight:bold;
     border-color: rgb(26, 25, 6);
   }
+@media (max-width: 720px){
+    .login {
+      float: none;
+      margin: 15%;
+      width: auto;
+      height: auto;
+    }
+}
+
