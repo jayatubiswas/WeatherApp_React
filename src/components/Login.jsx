@@ -3,15 +3,16 @@ import { useHistory } from 'react-router';
 import { auth } from '../firebase';
 import  "./css/login.css";
 
+
 function Login() {
-    const history = useHistory(" ");
-    const [email, setEmail] = useState(" ");
-    const [password, setPassword] = useState(" ");
+    const history = useHistory();
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
 
     const signIn = event => {
         event.preventDefault();
 
-        auth.signInWithEmailAndPassword(email, password).then(auth => {
+        auth.signInWithEmailAndPassword(email.trim(), password).then(auth => {
             history.push("/home");
         })
         .catch(error => alert(error.message))
@@ -21,7 +22,7 @@ function Login() {
 
     const register = event => {
         event.preventDefault();
-        auth.createUserWithEmailAndPassword(email,password).then((auth) =>{
+        auth.createUserWithEmailAndPassword(email.trim(),password).then((auth) =>{
             if (auth){
                 history.push("/home")
             }
@@ -46,10 +47,13 @@ function Login() {
 
                 <form>
                     <h5>E-mail</h5>
+
                     <input type='text' value={email} onChange={event => setEmail(event.target.value)} />
 
                     <h5>Password</h5>
-                    <input type='password' value={password} onChange={event => setPassword(event.target.value)} />
+
+                    <input type='password' value={password} onChange={event => setPassword(event.target.value)}
+                     />
 
                     <button 
                         onClick={signIn}
